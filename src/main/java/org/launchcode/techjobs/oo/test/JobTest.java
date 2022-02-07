@@ -1,6 +1,7 @@
 package org.launchcode.techjobs.oo.test;
 
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -41,5 +42,35 @@ public class JobTest {
         Job job4 = new Job("Web Developer", new Employer("LaunchCode"), new Location("Charlotte"), new PositionType("Front End Development"), new CoreCompetency("JavaScript"));
         Job job5 = new Job("Web Developer", new Employer("LaunchCode"), new Location("Charlotte"), new PositionType("Front End Development"), new CoreCompetency("JavaScript"));
         assertFalse(job4.getId() == job5.getId());
+    }
+
+    @Test
+    public void testToStringStartsAndEndsWithNewLine(){
+        Job job6 = new Job("Web Developer", new Employer("LaunchCode"), new Location("Charlotte"), new PositionType("Front End Development"), new CoreCompetency("JavaScript"));
+        assertEquals("\n", job6.toString().substring(0,1));
+        assertEquals("\n", job6.toString().substring(job6.toString().length()-1,job6.toString().length()));
+    }
+
+    @Test
+    public void testToStringContainsCorrectLabelsAndData(){
+        Job job7 = new Job("Web Developer", new Employer("LaunchCode"), new Location("Charlotte"), new PositionType("Front End Development"), new CoreCompetency("JavaScript"));
+        assertEquals("\nID: 4\n" +
+                "Name: Web Developer\n" +
+                "Employer: LaunchCode\n" +
+                "Location: Charlotte\n" +
+                "Position Type: Front End Development\n" +
+                "Core Competency: JavaScript\n", job7.toString());
+     }
+
+    @Test
+    public void testToStringHandlesEmptyField(){
+         Job job8 = new Job("Test Case", new Employer(""), new Location(""), new PositionType(""), new CoreCompetency(""));
+         assertEquals("\nID: 3\n" +
+                 "Name: Test Case\n" +
+                 "Employer: Data not available\n" +
+                 "Location: Data not available\n" +
+                 "Position Type: Data not available\n" +
+                 "Core Competency: Data not available\n", job8.toString());
+
     }
 }
