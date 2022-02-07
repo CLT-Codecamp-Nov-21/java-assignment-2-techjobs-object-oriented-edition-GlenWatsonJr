@@ -32,32 +32,40 @@ public class Job {
     @Override
     public String toString(){
             String idString = "ID: " + this.getId() + "\n";
+            int isEmpty = 0;
 
             String nameString = "Name: " + this.name + "\n";
             if (this.name == ""){
-            nameString = "Name: Data not available\n";
+                nameString = "Name: Data not available\n";
+                isEmpty++;
             }
 
             String employerString = "Employer: " + this.getEmployer().getValue() + "\n";
             if (getEmployer().getValue() == ""){
                 employerString = "Employer: Data not available\n";
+                isEmpty++;
             }
 
             String locationString = "Location: " + this.getLocation().getValue() + "\n";
             if (getLocation().getValue() == ""){
-            locationString = "Location: Data not available\n";
+                locationString = "Location: Data not available\n";
+                isEmpty++;
             }
 
             String positionString = "Position Type: " + this.getPositionType().getValue() + "\n";
             if (getPositionType().getValue() == ""){
-            positionString = "Position Type: Data not available\n";
+                positionString = "Position Type: Data not available\n";
+                isEmpty++;
             }
 
             String coreCompetencyString = "Core Competency: " + this.getCoreCompetency().getValue();
             if (getCoreCompetency().getValue() == ""){
-            coreCompetencyString = "Core Competency: Data not available";
+                coreCompetencyString = "Core Competency: Data not available";
+                isEmpty++;
             }
-
+            if (isEmpty == 5){
+                return "OOPS! This job does not seem to exist.";
+            }
             return "\n" + idString + nameString + employerString + locationString + positionString + coreCompetencyString + "\n";
     }
 
