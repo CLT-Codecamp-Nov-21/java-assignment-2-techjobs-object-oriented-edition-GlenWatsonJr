@@ -19,7 +19,7 @@ public class JobTest {
     public void testSettingJobId(){
         Job job1 = new Job();
         Job job2 = new Job();
-        assertFalse(job1.getId() == job2.getId());
+        assertNotEquals(job1.getId(), job2.getId());
     }
 
     @Test
@@ -41,32 +41,32 @@ public class JobTest {
     public void testJobsForEquality(){
         Job job4 = new Job("Web Developer", new Employer("LaunchCode"), new Location("Charlotte"), new PositionType("Front End Development"), new CoreCompetency("JavaScript"));
         Job job5 = new Job("Web Developer", new Employer("LaunchCode"), new Location("Charlotte"), new PositionType("Front End Development"), new CoreCompetency("JavaScript"));
-        assertFalse(job4.getId() == job5.getId());
+        assertFalse(job4 == job5);
     }
 
     @Test
     public void testToStringStartsAndEndsWithNewLine(){
         Job job6 = new Job("Web Developer", new Employer("LaunchCode"), new Location("Charlotte"), new PositionType("Front End Development"), new CoreCompetency("JavaScript"));
-        assertEquals("\n", job6.toString().substring(0,1));
-        assertEquals("\n", job6.toString().substring(job6.toString().length()-1,job6.toString().length()));
+        assertEquals('\n', job6.toString().charAt(0));
+        assertEquals('\n', job6.toString().charAt(job6.toString().length()-1));
     }
 
     @Test
     public void testToStringContainsCorrectLabelsAndData(){
         Job job7 = new Job("Web Developer", new Employer("LaunchCode"), new Location("Charlotte"), new PositionType("Front End Development"), new CoreCompetency("JavaScript"));
-        assertEquals("\nID: 4\n" +
-                "Name: Web Developer\n" +
-                "Employer: LaunchCode\n" +
-                "Location: Charlotte\n" +
-                "Position Type: Front End Development\n" +
-                "Core Competency: JavaScript\n", job7.toString());
+        assertEquals("\nID: "+ job7.getId() + "\n" +
+                "Name: "+ job7.getName() + "\n" +
+                "Employer: "+ job7.getEmployer().getValue() + "\n" +
+                "Location: "+ job7.getLocation().getValue() + "\n" +
+                "Position Type: " + job7.getPositionType().getValue() + "\n" +
+                "Core Competency: " + job7.getCoreCompetency().getValue() + "\n", job7.toString());
      }
 
     @Test
     public void testToStringHandlesEmptyField(){
          Job job8 = new Job("Test Case", new Employer(""), new Location(""), new PositionType(""), new CoreCompetency(""));
-         assertEquals("\nID: 3\n" +
-                 "Name: Test Case\n" +
+         assertEquals("\nID: " + job8.getId() + "\n" +
+                 "Name: " + job8.getName() +"\n" +
                  "Employer: Data not available\n" +
                  "Location: Data not available\n" +
                  "Position Type: Data not available\n" +
